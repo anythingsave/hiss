@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .password-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 640px;
+            height: 360px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="password-form">
+        <label for="password">パスワード:</label>
+        <input id="password" type="password">
+        <button onclick="checkPassword()">確認</button>
+    </div>
+
+    <div class="player-container">
+        <video id="player" width="640" height="360" controlsList="nodownload" autoplay>
+            <source src="https://anythingsave.github.io/test1/media/%E3%82%A2%E3%82%A4%E3%82%A2%E3%83%A0%E3%82%A2%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var passwordInput = document.getElementById('password');
+            var password = passwordInput.value;
+
+            // パスワードの暗号化
+            var encodedPassword = btoa(password);
+
+            // 暗号化したパスワードをチェック
+            if (encodedPassword === "dGVzdA==") { // "test" のBase64表現
+                showPlayer();
+            } else {
+                alert("パスワードが一致しません");
+            }
+        }
+
+        function showPlayer() {
+            var playerContainer = document.getElementsByClassName('player-container')[0];
+            playerContainer.style.display = 'flex';
+        }
+
+        // 全ての拡張機能を無効化する
+        document.addEventListener('beforeload', function (event) {
+            event.preventDefault();
+            console.log('HTML5拡張機能が無効化されました。');
+        }, true);
+
+        //F12
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'F12' || event.ctrlKey && event.shiftKey && event.key === 'I') {
+                event.preventDefault();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
