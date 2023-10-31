@@ -11,14 +11,14 @@
         let video = videojs('video1', {
             width: 640, // 幅
             height: 360, // 高さ
-            autoplay: true, // 自動再生
+            autoplay: false, // 自動再生
             loop: false, // ループ再生
             controls: true, // コントロール制御表示
-            preload: false, // 読み込み制御
+            preload: 'auto', // 読み込み制御
         });
         video.src({
             type: 'application/dash+xml',
-            src: 'https://yunbow.github.io/sample-mpeg-dash/mpd/drm/clearkey/Bullfinch.mpd',
+            src: 'https://anythingsave.github.io/his/index.mpd',
             keySystemOptions: [{
                 name: 'org.w3.clearkey',
                 options: {
